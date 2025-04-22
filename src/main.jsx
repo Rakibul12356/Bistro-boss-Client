@@ -4,7 +4,7 @@ import {RouterProvider} from "react-router-dom";
 import "./index.css";
 import router from "./routes/Router";
 
-
+import '@fortawesome/fontawesome-free/css/all.min.css';
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <div className="max-w-screen-xl mx-auto">  <RouterProvider router={router} /></div>
