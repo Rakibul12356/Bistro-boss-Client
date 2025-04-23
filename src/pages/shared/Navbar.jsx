@@ -3,11 +3,43 @@ import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     const navOption = <>
-        <li className='font-bold '><NavLink>HOME</NavLink></li>
-        <li><NavLink>CONTACT US</NavLink></li>
-        <li><NavLink>DASHBOARD</NavLink></li>
-        <li><NavLink>OUR MENU</NavLink></li>
-        <li><NavLink>OUR SHOP</NavLink></li>
+        <li>
+            <NavLink 
+            to='/' 
+            className={({ isActive }) => isActive ? 'text-[#EEFF25] font-bold ' : 'text-[#FFFFFF]'}>
+                HOME
+            </NavLink>
+        </li>
+        <li>
+            <NavLink 
+            to='contact'
+             className={({ isActive }) => isActive ? 'text-[#EEFF25] font-bold ' : 'text-[#FFFFFF]'} >
+                CONTACT US
+            </NavLink>
+        </li>
+        <li>
+            <NavLink
+            to='dashboard'
+                className={({ isActive }) => isActive ? 'text-[#EEFF25] font-bold' : 'text-[#FFFFFF]'}>
+                DASHBOARD
+            </NavLink>
+        </li>
+        <li>
+            <NavLink
+                to='our-menu'
+                className={({ isActive }) =>
+                    isActive ? 'text-[#EEFF25] font-bold ' : 'text-[#FFFFFF]'}>
+                OUR MENU
+            </NavLink>
+        </li>
+        <li>
+            <NavLink
+            to='our-shop'
+                className={({ isActive }) =>
+                    isActive ? 'text-[#EEFF25] font-bold underline' : 'text-[#FFFFFF]'}>
+                OUR SHOP
+            </NavLink>
+        </li>
 
     </>
     return (
@@ -24,7 +56,7 @@ const Navbar = () => {
                             {navOption}
                         </ul>
                     </div>
-                    <a className="text-xl">Bistro Boss <br />
+                    <a className="text-xl font-extrabold">Bistro Boss <br />
                         R E S T A U R A N T </a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
