@@ -10,7 +10,7 @@ const Cover = ({img,title}) => {
     >
      
         <div
-            className="hero min-h-[600px]"
+            className="hero min-h-[500px]"
            
         >
             <div className="hero-overlay"></div>

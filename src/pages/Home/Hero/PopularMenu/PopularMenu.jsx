@@ -23,13 +23,15 @@ const PopularMenu = () => {
         <section className='mb-12 ml-2 mr-3'>
             <SectionTitle heading={'FROM OUR MENU'} subHeading={'check it out'}></SectionTitle>
             <div className='grid mb-4 md:grid-cols-2 gap-4'>
-
+                
                 {
                     popular.map(item => <MenuItem
                         key={item._id}
                         item={item}
                     ></MenuItem>)
                 }
+               
+              
                
             </div>
             <div className='flex justify-center'>
