@@ -10,10 +10,11 @@ const FoodCard = ({item}) => {
             alt="Shoes" />
         </figure>
         <div className="card-body items-center text-center">
-          <h2 className="card-title text-center">Card Title</h2>
-          <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+          <h2 className="card-title text-center">{name}</h2>
+          <p>{recipe}</p>
+          <p className='font-bold'>price: <span className='text-2xl font-semibold text-[#BB8506]'> ${price}</span></p>
           <div className="card-actions justify-center ">
-            <button className="box-border hover:bg-black btn border-b-[3px] border-[#bb8506] rounded-lg bg-[#e8e8e8] text-[#BB8506]">Buy Now</button>
+            <button className="box-border hover:bg-black btn border-b-[3px] border-[#bb8506] rounded-lg bg-[#e8e8e8] text-[#BB8506]">ADD to cart</button>
           </div>
         </div>
       </div>

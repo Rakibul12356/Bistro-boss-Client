@@ -5,6 +5,7 @@ import MainLayOut from '../layout/MainLayOut';
 import ErrorElement from '../error/ErrorElement';
 import Home from '../pages/Home/Home';
 import OurMenu from '../pages/OurMenu/OurMenu';
+import Order from '../pages/order/order/Order';
 
 
 const router = createBrowserRouter([
@@ -15,12 +16,15 @@ const router = createBrowserRouter([
       children:[
         {
             path:"/",
-            
             element:<Home></Home>
         },
         {
           path:'/our-menu',
           element:<OurMenu></OurMenu>
+        },
+        {
+          path:'/order',
+          element:<Order></Order>
         }
       ]
     },

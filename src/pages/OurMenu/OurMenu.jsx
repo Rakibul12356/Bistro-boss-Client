@@ -1,7 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Cover from '../shared/cover/Cover';
+
 import useMenu from '../../Hooks/useMenu';
+import MenuItem from '../shared/MenuItem/MenuItem';
 import menuImg from "../../assets/menu/banner3.jpg"
 import DesertImg from "../../assets/menu/dessert-bg.jpeg"
 import pizzaImg from "../../assets/menu/pizza-bg.jpg";
@@ -28,32 +30,36 @@ const OurMenu = () => {
                 <SectionTitle heading={"TODAY'S OFFER"}
                     subHeading={"Don't miss"}>
                 </SectionTitle>
-                <MenuCategory items={offered}></MenuCategory>
+                <div className='grid mb-4 md:grid-cols-2 gap-4'>
+                    {
+                        offered.map(item => <MenuItem
+                            key={item._id}
+                            item={item}
+                        ></MenuItem>)
+                    }
+                </div>
+                <div className='flex justify-center'>
+                    <button className='btn  border-b-black rounded'>ORDER YOUR FAVORITE FOOD</button>
+                </div>
             </section>
             {/** 2*/}
             <section className='dessert-section mt-4'>
-                <Cover img={DesertImg} title={'DESSERTS'}></Cover>
-
-                <MenuCategory items={dessert}></MenuCategory>
+                <MenuCategory img={DesertImg} title={'DESSERTS'} items={dessert}></MenuCategory>
             </section>
             {/**3 */}
             <section className='pizza-section mt-4'>
-                <Cover img={pizzaImg} title={'Pizza'}></Cover>
-                <MenuCategory items={pizza}></MenuCategory>
+                <MenuCategory img={pizzaImg} title={'Pizza'} items={pizza}></MenuCategory>
             </section>   {/**4 */}
             <section className='dessert-section mt-4'>
-                <Cover img={saladImg} title={'Salads'}></Cover>
-                <MenuCategory items={salad}></MenuCategory>
+                <MenuCategory img={saladImg} title={'Salads'} items={salad}></MenuCategory>
             </section>
             {/** 5*/}
             <section className='dessert-section mt-4'>
-                <Cover img={soupImg} title={'soups'}></Cover>
-                <MenuCategory items={soup}></MenuCategory>
+                <MenuCategory img={soupImg} title={'soups'} items={soup}></MenuCategory>
             </section>
             {/** 5*/}
             <section className='dessert-section mt-4 mb-10'>
-                <Cover img={DesertImg} title={'Drinks'}></Cover>
-                <MenuCategory items={drinks}></MenuCategory>
+                <MenuCategory img={DesertImg} title={'Drinks'} items={drinks}></MenuCategory>
             </section>
         </div>
     );

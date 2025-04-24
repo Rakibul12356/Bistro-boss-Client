@@ -34,13 +34,12 @@ const Navbar = () => {
         </li>
         <li>
             <NavLink
-            to='our-shop'
+            to='/order'
                 className={({ isActive }) =>
                     isActive ? 'text-[#EEFF25] font-bold underline' : 'text-[#FFFFFF]'}>
-                OUR SHOP
+                ORDER FOOD
             </NavLink>
         </li>
-
     </>
     return (
         <>

@@ -1,10 +1,12 @@
 import React from 'react';
 import MenuItem from '../shared/MenuItem/MenuItem';
+import Cover from '../shared/cover/Cover';
 
-const MenuCategory = ({ items }) => {
+const MenuCategory = ({ items,img, title }) => {
     return (
         <div>
-            <div className='grid mt-4 mb-4 md:grid-cols-2 gap-4'>
+            <Cover img={img} title={title}></Cover>
+            <div className='grid mt-4 mb-4 md:grid-cols-2 gap-10 my-16 px-10'>
                 {
                     items.map(item => <MenuItem
                         key={item._id}
