@@ -40,6 +40,23 @@ const Navbar = () => {
                 ORDER FOOD
             </NavLink>
         </li>
+        <li>
+            <NavLink
+            to='/login'
+                className={({ isActive }) =>
+                    isActive ? 'text-[#EEFF25] font-bold underline' : 'text-[#FFFFFF]'}>
+               Login
+            </NavLink>
+        </li>
+        <li>
+            <NavLink
+            to='/signup'
+                className={({ isActive }) =>
+                    isActive ? 'text-[#EEFF25] font-bold underline' : 'text-[#FFFFFF]'}>
+                SignUp
+            </NavLink>
+        </li>
+        
     </>
     return (
         <>

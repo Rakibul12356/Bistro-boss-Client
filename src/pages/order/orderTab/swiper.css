@@ -1,0 +1,24 @@
+/* Center the pagination container */
+.swiper-pagination {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  /* Bullet default style */
+  .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background-color: #000; /* default bullet color */
+    opacity: 0.4;
+    margin: 0 6px;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+  }
+  
+  /* Active bullet style */
+  .swiper-pagination-bullet-active {
+    background-color: #BB8506; /* your brand color */
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  

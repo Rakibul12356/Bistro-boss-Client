@@ -6,6 +6,8 @@ import ErrorElement from '../error/ErrorElement';
 import Home from '../pages/Home/Home';
 import OurMenu from '../pages/OurMenu/OurMenu';
 import Order from '../pages/order/order/Order';
+import Login from '../pages/AhuthenticationPages/Login/Login';
+import SignUp from '../pages/AhuthenticationPages/SignUp/SignUp';
 
 
 const router = createBrowserRouter([
@@ -23,8 +25,20 @@ const router = createBrowserRouter([
           element:<OurMenu></OurMenu>
         },
         {
-          path:'/order',
+          path:'/order/',
           element:<Order></Order>
+        },
+        {
+          path:'/order/:category',
+          element:<Order></Order>
+        },
+        {
+         path:'/login',
+         element:<Login></Login> 
+        },
+        {
+          path:'/signup',
+          element:<SignUp></SignUp>
         }
       ]
     },

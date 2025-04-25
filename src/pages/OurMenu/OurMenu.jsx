@@ -11,6 +11,7 @@ import saladImg from "../../assets/menu/salad-bg.jpg";
 import soupImg from "../../assets/menu/soup-bg.jpg";
 import SectionTitle from '../../components/SectionTitle';
 import MenuCategory from '../Menu/MenuCategory';
+import { Link } from 'react-router-dom';
 const OurMenu = () => {
     const [menu] = useMenu();
     const dessert = menu.filter(item => item.category === 'dessert');
@@ -39,27 +40,27 @@ const OurMenu = () => {
                     }
                 </div>
                 <div className='flex justify-center'>
-                    <button className='btn  border-b-black rounded'>ORDER YOUR FAVORITE FOOD</button>
+                    <Link><button className='btn  border-b-black rounded'>ORDER YOUR FAVORITE FOOD</button> </Link>
                 </div>
             </section>
-            {/** 2*/}
             <section className='dessert-section mt-4'>
-                <MenuCategory img={DesertImg} title={'DESSERTS'} items={dessert}></MenuCategory>
+                <MenuCategory img={DesertImg} title={'dessert'} items={dessert} />
             </section>
-            {/**3 */}
+
             <section className='pizza-section mt-4'>
-                <MenuCategory img={pizzaImg} title={'Pizza'} items={pizza}></MenuCategory>
-            </section>   {/**4 */}
-            <section className='dessert-section mt-4'>
-                <MenuCategory img={saladImg} title={'Salads'} items={salad}></MenuCategory>
+                <MenuCategory img={pizzaImg} title={'pizza'} items={pizza} />
             </section>
-            {/** 5*/}
-            <section className='dessert-section mt-4'>
-                <MenuCategory img={soupImg} title={'soups'} items={soup}></MenuCategory>
+
+            <section className='salad-section mt-4'>
+                <MenuCategory img={saladImg} title={'salad'} items={salad} />
             </section>
-            {/** 5*/}
-            <section className='dessert-section mt-4 mb-10'>
-                <MenuCategory img={DesertImg} title={'Drinks'} items={drinks}></MenuCategory>
+
+            <section className='soup-section mt-4'>
+                <MenuCategory img={soupImg} title={'soup'} items={soup} />
+            </section>
+
+            <section className='drinks-section mt-4 mb-10'>
+                <MenuCategory img={DesertImg} title={'drinks'} items={drinks} />
             </section>
         </div>
     );

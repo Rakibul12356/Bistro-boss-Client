@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
 
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
 @import "tailwindcss";
@@ -8,3 +10,18 @@
 body {
     font-family: 'Cinzel', serif;
   }
+  .inter-font {
+    font-family: 'Inter', sans-serif;
+  }
+  /* In your CSS file or global style */
+
+  @layer components {
+    .swiper-pagination-bullet {
+      @apply w-8 h-8 bg-gray-200 text-black text-sm rounded-md border border-gray-300 opacity-60 flex items-center justify-center transition-all duration-300;
+    }
+  
+    .swiper-pagination-bullet-active {
+      @apply bg-yellow-600 text-white font-bold border-yellow-600 scale-110 opacity-100;
+    }
+  }
+  
