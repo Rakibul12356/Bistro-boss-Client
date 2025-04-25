@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import loginImg from '../../../assets/others/authentication2.png'
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import bgImg from '../../../assets/others/authentication.png'
 const Login = () => {
@@ -29,11 +29,12 @@ const Login = () => {
             style={{ backgroundImage: `url(${bgImg})` }} className="hero font-inter min-h-screen p-8">
             <div className="hero-content flex-col md:flex-row-reverse rounded-6xl    shadow-black shadow-2xl " style={{ backgroundImage: `url(${bgImg})` }}>
                 <div className="text-center md:w-1/2 lg:text-left">
-                    <h1 className="text-5xl font-bold">Login </h1>
+                  <img src={loginImg} alt="" />
                 </div>
                 <div
                     className="card inter-font bg-base-100 w-full md:w-1/2 max-w-sm shrink-0 shadow-2xl">
                     <div className="card-body">
+                    <h1 className="text-5xl font-bold">Login </h1>
                         <form onSubmit={handleLogin} className="fieldset">
                             <label className="label">Email</label>
                             <input type="email"
