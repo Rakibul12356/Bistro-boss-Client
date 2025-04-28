@@ -3,18 +3,41 @@ import { useForm } from "react-hook-form";
 import loginImg from '../../../assets/others/authentication2.png'
 import { LiaFacebook } from "react-icons/lia";
 import bgImg from '../../../assets/others/authentication.png'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle } from "react-icons/fa";
 import { VscGithub } from "react-icons/vsc";
 import { AuthContext } from '../../../providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const { loading, createUser } = useContext(AuthContext)
-    
+
+    const { register, reset, handleSubmit, formState: { errors } } = useForm();
+    const { createUser, updateUserProfile ,loading} = useContext(AuthContext)
+    const navigate=useNavigate()
+
     const onSubmit = data => {
-        console.log(data.email);
-        
+        console.log(data);
+        const email = data.email
+        const password = data.password
+        createUser(email, password)
+            .then(result => {
+                console.log(result.user)
+                updateUserProfile(data.name, data.photoURL)
+                    .then(() => {
+                        console.log('user profile updated')
+                       
+                        Swal.fire({
+                            title: "SignUp successfully",
+                            icon: "success",
+                            draggable: true
+                        });
+                        reset();
+                        navigate('/')
+                    }).catch((error) => {
+                        console.error(error.message)
+                    });
+            })
+
 
     }
 
@@ -36,30 +59,40 @@ const SignUp = () => {
                                 className="input"
                                 {...register("name", { required: true })}
                                 placeholder="Enter Your Name" />
-                                {/* errors will return when field validation fails  */}
+                            {/* errors will return when field validation fails  */}
                             <p>
-                            {errors.name && <span className='text-red-500'>This field is required</span>}
+                                {errors.name && <span className='text-red-500'>This field is required</span>}
+                            </p>
+                            <label className="label">Photo Url</label>
+                            <input type="text"
+
+                                className="input"
+                                {...register("photoURL", { required: true })}
+                                placeholder="Photo URL" />
+                            {/* errors will return when field validation fails  */}
+                            <p>
+                                {errors.photoURL && <span className='text-red-500'>photo URL is required</span>}
                             </p>
                             <label className="label">Email</label>
                             <input type="email"
                                 name='email ' required
                                 {...register("email", { required: true })}
                                 className="input" placeholder="Enter Your Email" />
-                                {/* errors will return when field validation fails  */}
+                            {/* errors will return when field validation fails  */}
                             <p>
-                            {errors.email && <span className='text-red-500'>This field is required</span>}
+                                {errors.email && <span className='text-red-500'>This field is required</span>}
                             </p>
                             <label className="label">Password</label>
                             <input type="password"
-                                {...register("password", { required: true ,minLength:12, maxLength: 12 ,pattern:/^(?=.*[A-Za-z])(?=.*\d).+$/})}
+                                {...register("password", { required: true, minLength: 6, maxLength: 18, pattern: /^(?=.*[A-Za-z])(?=.*\d).+$/ })}
                                 name='password'
                                 className="input" placeholder="Enter your password" />
                             {/* errors will return when field validation fails  */}
                             <p className=''>
-                            {errors.password?.type === 'required' && <span className='text-red-500'>This field is required</span>}
-                            {errors.password?.type === 'minLength' && <span className='text-red-500'>Password length must be 8</span>}
-                            {errors.password?.type === 'maxLength' && <span className='text-red-500'>Password length should 12 </span>}
-                            {errors.password?.type === 'pattern' && <span className='text-red-500'>Password should have 1 letter and 1 number </span>}
+                                {errors.password?.type === 'required' && <span className='text-red-500'>This field is required</span>}
+                                {errors.password?.type === 'minLength' && <span className='text-red-500'>Password length must be 8</span>}
+                                {errors.password?.type === 'maxLength' && <span className='text-red-500'>Password length should 12 </span>}
+                                {errors.password?.type === 'pattern' && <span className='text-red-500'>Password should have 1 letter and 1 number </span>}
                             </p>
                             <input type="submit"
                                 value="sign Up" className="btn text-white bg-[#D1A054B3] mt-4 hover:bg-black hover:text-[#d19f54f1] hover:border-[#D1A054B3] hover:border-b-4" />

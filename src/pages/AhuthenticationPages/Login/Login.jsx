@@ -1,15 +1,23 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import loginImg from '../../../assets/others/authentication2.png'
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import bgImg from '../../../assets/others/authentication.png'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { LiaFacebook } from "react-icons/lia";
 import { FaGoogle } from "react-icons/fa";
 import { VscGithub } from "react-icons/vsc";
+import Swal from 'sweetalert2'
+
+import { AuthContext } from '../../../providers/AuthProvider';
+
 
 const Login = () => {
     const captchaRef = useRef(null)
+    const {signIn}=useContext(AuthContext)
     const [disabled, setDisabled] = useState(true)
+    const navigate = useNavigate();
+    const location =useLocation();
+    const from = location.state?.from?.pathname || "/"
     useEffect(() => {
         loadCaptchaEnginge(6);
     }, [])
@@ -19,6 +27,29 @@ const Login = () => {
         const email = form.email.value
         const password = form.password.value
         console.log(email, password)
+        signIn(email,password)
+        .then(result =>{
+            const user=result.user;
+            console.log(user)
+            
+            Swal.fire({
+                title: "login Successfully",
+                icon: "success",
+                draggable: true
+              });
+              navigate(from,{replace:true});
+              form.reset()
+              setDisabled(true)
+        })
+        .catch(error=>{
+            console.error(error);
+            Swal.fire({
+                title: "login failed",
+                text:error.message,
+                icon:"error"
+
+            })
+        })
     }
     const handleValidateCaptcha = () => {
         const user_captcha_value = captchaRef.current.value;
@@ -56,7 +87,7 @@ const Login = () => {
                                     ref={captchaRef}
                                     name='captcha'
                                     className="input" placeholder="type here --" />
-                                <button className='btn btn-outline btn-xs mt-2 w-full hover:bg-black hover:text-white' onClick={handleValidateCaptcha}>Validate Captcha</button>
+                                <button type='button' className='btn btn-outline btn-xs mt-2 w-full hover:bg-black hover:text-white' onClick={handleValidateCaptcha}>Validate Captcha</button>
                             </div>
                             <input type="submit"
                                 disabled={disabled}

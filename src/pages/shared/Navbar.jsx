@@ -1,25 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
+
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext);
+   
+    
+    const handleLogOut = () => {
+        logOut()
+            .then(result => console.log(result))
+            .catch(error => console.log(error))
+    }
     const navOption = <>
         <li>
-            <NavLink 
-            to='/' 
-            className={({ isActive }) => isActive ? 'text-[#EEFF25] font-bold ' : 'text-[#FFFFFF]'}>
+            <NavLink
+                to='/'
+                className={({ isActive }) => isActive ? 'text-[#EEFF25] font-bold ' : 'text-[#FFFFFF]'}>
                 HOME
             </NavLink>
         </li>
         <li>
-            <NavLink 
-            to='contact'
-             className={({ isActive }) => isActive ? 'text-[#EEFF25] font-bold ' : 'text-[#FFFFFF]'} >
+            <NavLink
+                to='contact'
+                className={({ isActive }) => isActive ? 'text-[#EEFF25] font-bold ' : 'text-[#FFFFFF]'} >
                 CONTACT US
             </NavLink>
         </li>
         <li>
             <NavLink
-            to='dashboard'
+                to='dashboard'
                 className={({ isActive }) => isActive ? 'text-[#EEFF25] font-bold' : 'text-[#FFFFFF]'}>
                 DASHBOARD
             </NavLink>
@@ -34,29 +44,35 @@ const Navbar = () => {
         </li>
         <li>
             <NavLink
-            to='/order'
+                to='/order'
                 className={({ isActive }) =>
                     isActive ? 'text-[#EEFF25] font-bold underline' : 'text-[#FFFFFF]'}>
                 ORDER FOOD
             </NavLink>
         </li>
-        <li>
-            <NavLink
-            to='/login'
-                className={({ isActive }) =>
-                    isActive ? 'text-[#EEFF25] font-bold underline' : 'text-[#FFFFFF]'}>
-               Login
-            </NavLink>
-        </li>
-        <li>
-            <NavLink
-            to='/signup'
-                className={({ isActive }) =>
-                    isActive ? 'text-[#EEFF25] font-bold underline' : 'text-[#FFFFFF]'}>
-                SignUp
-            </NavLink>
-        </li>
-        
+
+        {
+            user ? <>
+                <button onClick={handleLogOut} className="btn">logOut</button ></> : <><li>
+                    <NavLink
+                        to='/login'
+                        className={({ isActive }) =>
+                            isActive ? 'text-[#EEFF25] font-bold underline' : 'text-[#FFFFFF]'}>
+                        Login
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink
+                        to='/signup'
+                        className={({ isActive }) =>
+                            isActive ? 'text-[#EEFF25] font-bold underline' : 'text-[#FFFFFF]'}>
+                        SignUp
+                    </NavLink>
+                </li></>
+        }
+
+
+
     </>
     return (
         <>
@@ -81,8 +97,9 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    {user? <h3>{user?.displayName}</h3> :<></>}
                 </div>
+                
             </div>
         </>
 
