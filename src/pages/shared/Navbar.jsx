@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import { FaCartPlus } from "react-icons/fa6";
 import useCart from '../../Hooks/useCart';
@@ -98,9 +98,14 @@ const[cart ]= useCart()
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <button className="btn">
-                       <FaCartPlus className='mr-1'></FaCartPlus> <div className="badge badge-sm badge-secondary">{cart.length}</div>
+                <Link to="/dashboard/cart">
+                <button className="btn">
+                        
+                        <FaCartPlus className='mr-1'></FaCartPlus>
+                        <div className="badge badge-sm badge-secondary">{cart.length}</div>
                     </button>
+                </Link>
+                   
                 </div>
 
             </div>
