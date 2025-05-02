@@ -1,22 +1,21 @@
 import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import loginImg from '../../../assets/others/authentication2.png'
-import { LiaFacebook } from "react-icons/lia";
 import bgImg from '../../../assets/others/authentication.png'
 import { Link, useNavigate } from 'react-router-dom';
-import { FaGoogle } from "react-icons/fa";
-import { VscGithub } from "react-icons/vsc";
 import { AuthContext } from '../../../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../../../Hooks/useAxiosPublic';
+import SocialLogin from '../socialLogin/SocialLogin';
 
 const SignUp = () => {
 
     const { register, reset, handleSubmit, formState: { errors } } = useForm();
-    const { createUser, updateUserProfile ,loading} = useContext(AuthContext)
-    const navigate=useNavigate()
-
+    const { createUser, updateUserProfile, loading } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic()
     const onSubmit = data => {
-        console.log(data);
+        //console.log(data);
         const email = data.email
         const password = data.password
         createUser(email, password)
@@ -24,15 +23,24 @@ const SignUp = () => {
                 console.log(result.user)
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        console.log('user profile updated')
-                       
-                        Swal.fire({
-                            title: "SignUp successfully",
-                            icon: "success",
-                            draggable: true
-                        });
-                        reset();
-                        navigate('/')
+                        //  console.log('user profile updated')
+                        const userInfo = {
+                            name: data.name,
+                            photo: data.photoURL,
+                            email: data.email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    Swal.fire({
+                                        title: "SignUp successfully",
+                                        icon: "success",
+                                        draggable: true
+                                    });
+                                    reset();
+                                    navigate('/')
+                                }
+                            })
                     }).catch((error) => {
                         console.error(error.message)
                     });
@@ -102,12 +110,7 @@ const SignUp = () => {
                             <h2 className='text-center mt-4 text-[#444444]'>
                                 Or sign up with
                             </h2>
-                            <div className='flex justify-center items-center gap-6  mt-8'>
-                                <button ><LiaFacebook className='text-4xl' /></button>
-                                <button className='border-1 rounded-full p-1'><FaGoogle className='text-xl' /> </button>
-                                <button><VscGithub className='text-3xl' /></button>
-
-                            </div>
+                            <SocialLogin></SocialLogin>
                         </div>
                     </div>
                 </div>

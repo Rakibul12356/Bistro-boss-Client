@@ -3,12 +3,11 @@ import loginImg from '../../../assets/others/authentication2.png'
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 import bgImg from '../../../assets/others/authentication.png'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { LiaFacebook } from "react-icons/lia";
-import { FaGoogle } from "react-icons/fa";
-import { VscGithub } from "react-icons/vsc";
+
 import Swal from 'sweetalert2'
 
 import { AuthContext } from '../../../providers/AuthProvider';
+import SocialLogin from '../socialLogin/SocialLogin';
 
 
 const Login = () => {
@@ -98,11 +97,7 @@ const Login = () => {
                             <h2 className='text-center mt-4 text-[#444444]'>
                                 Or sign in with
                             </h2>
-                            <div className='flex justify-center items-center gap-6  mt-8'>
-                                <button ><LiaFacebook className='text-4xl' /></button>
-                                <button className='border-1 rounded-full p-1'><FaGoogle className='text-xl' /> </button>
-                                <button><VscGithub className='text-3xl' /></button>
-                            </div>
+                            <SocialLogin></SocialLogin>
                         </div>
                     </div>
                 </div>

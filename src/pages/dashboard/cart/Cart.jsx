@@ -47,8 +47,8 @@ const Cart = () => {
 
                 <div className='flex justify-evenly'>
                     <h2 className='text-2xl font font-bold'>TOTAL Orders:{cart.length}</h2>
-                    <h2 className='text-2xl font-bold'>Total price: ${totalPrice}</h2>
-                    <button className='btn text-white bg-[#D1A054]'>Pay</button>
+                    <h2 className='text-2xl font-bold'>Total price: ${totalPrice.toFixed(2)}</h2>
+                    <button  disabled={cart.length === 0} className='btn text-white bg-[#D1A054]'>Pay</button>
                 </div>
                 <div className="overflow-x-auto ">
                     <table className="table">
@@ -66,7 +66,7 @@ const Cart = () => {
                         <tbody>
                             {/* row 1 */}
                            {
-                            cart.map((item,index)=> <tr>
+                            cart.map((item,index)=> <tr key={item._id} >
                                 <th>
                                 {index+1}
                                 </th>
@@ -82,7 +82,7 @@ const Cart = () => {
                                     </div>
                                 </td>
                                 <td>{item.name}</td>
-                                <td>${item.price}</td>
+                                <td>${item.price.toFixed(2)}</td>
                                 <th>
                                     <button onClick={()=>{handleDelete(item._id)}} className="btn btn-ghost bg-[#B91C1C] s"><RiDeleteBin6Line /></button>
                                 </th>
